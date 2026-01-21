@@ -25,6 +25,8 @@ from project1.views import index
 from project1.views import LoginPage
 from project1.views import singup
 from project1.views import LogoutPage
+from project1.views import predict
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("project1/", project, name="project"),
@@ -37,4 +39,6 @@ urlpatterns = [
     # keep legacy misspelled route for existing links
     path("singup/", singup, name="singup"),
     path("logout/", LogoutPage, name="logout"),
+    path("predict/", predict, name="predict"),
+
 ]

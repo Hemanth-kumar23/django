@@ -108,6 +108,28 @@ def LogoutPage(request):
     logout(request)
     return redirect('login')
 
+@login_required(login_url='login')
+def predict(request):
+    if(request.method=="POST"):
+        data=request.POST
+        area=int(data.get('textarea'))
+        rooms=int(data.get('textroom'))
+        age=int(data.get('textage'))
+        if('predict' in request.POST):
+            import pandas as pd
+            path="/Users/hemantkumarrudramuni/Downloads/Datanew/homeprices_Mul.csv"
+            data=pd.read_csv(path)
+            medianval=data.bedrooms.median()
+            data.bedrooms=data.bedrooms.fillna(medianval)
+            inputs = data.drop(columns=["price"])
+            output = data["price"]
+            import sklearn 
+            from sklearn import linear_model
+            model=linear_model.LinearRegression()
+            model.fit(inputs,output)
+            result=model.predict([[area,rooms,age]])
+            return render(request,'predict.html',context={'result':result})
+    return render(request,"predict.html")
 
 
 
