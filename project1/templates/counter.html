@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <center>
+            <table>
+                <tr>
+                    <td>
+                        <button type="submit" name="increment">INCREMENT</button>
+                        <button type="submit" name="decrement">DECREMENT</button>
+                        <button type="submit" name="reset">RESET</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text", value="{{result}}"> 
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </form>
+</body>
+{% endblock %}

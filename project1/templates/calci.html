@@ -1,0 +1,49 @@
+{% extends "index.html" %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; padding: 2rem; }
+        .container { max-width: 420px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 1rem; }
+        table { width: 100%; border-collapse: collapse; }
+        td { padding: 0.4rem; vertical-align: middle; }
+        input[type="number"] { width: 100%; padding: 0.4rem; box-sizing: border-box; }
+        .actions { text-align: center; padding-top: 0.6rem; }
+        .actions button { margin: 0.2rem; padding: 0.5rem 0.8rem; }
+        .result { text-align: center; margin-top: 1rem; font-size: 1.25rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <h1>Simple Calculator</h1>
+            <table>
+                <tr>
+                    <td>First number</td>
+                    <td><input type="number" name="num1" required></td>
+                </tr>
+                <tr>
+                    <td>Second number</td>
+                    <td><input type="number" name="num2" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="actions">
+                        <button type="submit" name="operation" value="add">Add</button>
+                        <button type="submit" name="operation" value="subtract">Subtract</button>
+                        <button type="submit" name="operation" value="multiply">Multiply</button>
+                        <button type="submit" name="operation" value="divide">Divide</button>
+                    </td>
+                </tr>
+            </table>
+
+            {% if result is not None %}
+                <div class="result">Result: {{ result }}</div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+{% endblock %}

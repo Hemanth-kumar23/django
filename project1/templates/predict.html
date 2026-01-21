@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price prediction</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <center>
+            <h1>Price Prediction</h1>
+            <table>
+                <tr>
+                    <td>
+                        Enter the Area:
+                    </td>
+                    <td>
+                        <input type="text" name="textarea">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Enter the no bedrooms:
+                    </td>
+                    <td>
+                        <input type="text" name="textroom">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Enter the Age:
+                    </td>
+                    <td>
+                        <input type="text" name="textage">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-primary" name="predict">Predict</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ result }}
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </form>
+</body>
+{% endblock %}
